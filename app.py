@@ -63,8 +63,8 @@ def load_user(user_id):
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        username = os.environ.get('MY_APP_USERNAME')
-        password = os.environ.get('MY_APP_PASSWORD')
+        username = os.environ.get('admin')
+        password = os.environ.get('pass')
         if username in users and users[username] == password:
             user = User(username, password)
             login_user(user)
