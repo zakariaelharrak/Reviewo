@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Your Webpage</title>
+    <script src="https://kit.fontawesome.com/fdf8e81dc9.js" crossorigin="anonymous"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -37,7 +38,7 @@
             width: calc(100% - 22px); /* Subtracting button width and margins */
             padding: 10px;
             margin-bottom: 20px;
-            border: 1px solid #ccc;
+            border: 1px brands #ccc;
             border-radius: 5px;
             box-sizing: border-box;
             font-size: 16px;
@@ -90,23 +91,43 @@
 <body>
     <h1>Create Your Webpage</h1>
     <form action="/generate" method="POST" enctype="multipart/form-data">
-        <label for="project_name">Project Name:</label>
+        <label for="project_name"><i class="bi bi-diagram-3"></i> Project Name:</label>
         <input type="text" id="project_name" name="project_name" required><br>
-        <label for="project_description">Project Description (255 charters):</label>
+        
+        <label for="project_description"><i class="bi bi-file-earmark-alt"></i> Project Description (255 characters):</label>
         <input type="text" id="project_description" name="project_description" maxlength="255" required><br><br>
 
-        <label for="image">Upload Image:</label>
+        <label for="image"><i class="bi bi-image"></i> Upload Image:</label>
         <input type="file" id="image" name="image" accept="image/*"><br><br>
-        
+
+        <div>
+            <label for="background_color"><i class="bi bi-palette"></i> Choose Background Color:</label><br>
+            <input type="color" id="background_color" name="background_color" checked><br><br>
+        </div>
+
         <div id="linkInputs">
             <div class="link-container">
                 <input type="text" id="name1" name="name1" placeholder="Name" required><br>
                 <input type="url" id="url1" name="url1" placeholder="URL" required><br>
+                <select id="icon1" name="icon1" class="form-select">
+                    <option value="fa-brands fa-facebook">Facebook</option>
+                    <option value="fa-brands fa-Instagram">Instagram</option>
+                    <option value="fa-brands fa-whatsapp">whatsapp</option>
+
+
+
+                    <!-- Add more options for other icons as needed -->
+                </select><br>
                 <button type="button" class="remove-link" onclick="removeLink(this)">Remove Link</button>
             </div>
         </div>
-
         <button type="button" id="addLink">Add New Link</button><br><br>
+
+        <label for="contact"><i class="bi bi-address-book"></i> Upload Contact (vCard file):</label>
+        <input type="file" id="contact" name="contact" accept=".vcf"><br><br>
+
+        <label for="banner"><i class="bi bi-ad"></i> Upload Banner Image:</label>
+        <input type="file" id="banner" name="banner" accept="image/*"><br><br>
 
         <button type="submit">Generate Webpage</button>
     </form>
@@ -122,6 +143,11 @@
                 newDiv.className = 'link-container';
                 newDiv.innerHTML = `<input type="text" id="name${index}" name="name${index}" placeholder="Name" required><br>
                                     <input type="url" id="url${index}" name="url${index}" placeholder="URL" required><br>
+                                    <select id="icon${index}" name="icon${index}" class="form-select">
+                    <option value="fa-brands fa-facebook">Facebook</option>
+                    <option value="fa-brands fa-Instagram">Instagram</option>
+                    <option value="fa-brands fa-whatsapp">whatsapp</option>
+                                    </select><br>
                                     <button type="button" class="remove-link" onclick="removeLink(this)">Remove Link</button>`;
                 linkInputs.appendChild(newDiv);
                 index++;

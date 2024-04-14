@@ -1,20 +1,18 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/fdf8e81dc9.js" crossorigin="anonymous"></script>
     <title>{{ page_name }}</title>
     <style>
-body {
-    font-family: Arial, sans-serif;
-    background: #F7B98C; /* Fallback color */
-    background: linear-gradient(135deg, #F7B98C, #E25E07); /* Gradient background */
-    text-align: center;
-    height: 100vh; /* Set the height to 100% of the viewport height */
-    margin: 0; /* Remove default margin */
-    background-repeat: no-repeat; /* Prevent background from repeating */
-    background-size: cover; /* Ensure background covers the entire viewport */
-}
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            height: 100vh; /* Set the height to 100% of the viewport height */
+            margin: 0; /* Remove default margin */
+            background-repeat: no-repeat; /* Prevent background from repeating */
+            background-size: cover; /* Ensure background covers the entire viewport */
+        }
 
         .container {
             max-width: 800px;
@@ -31,22 +29,19 @@ body {
             text-decoration: none;
             color: white;
             font-weight: 400;
-        
         }
-        a.url{
+        a.url {
             font-size: 16px;
             text-decoration: none;
             color: white;
             font-weight: 600;
-
         }
-        h2.Description{
+        h2.Description {
             display: inline-block;
+            text-align: center;
             width: 500px; 
             margin: 4px 2px;
-
         }
-
         ul {
             list-style-type: none;
             padding: 0;
@@ -54,46 +49,133 @@ body {
         li {
             margin-bottom: 10px;
         }
-        
         a.button {
             display: inline-block;
-    width: 500px; /* Set the width to a fixed value */
-    height: 40px; /* Set the height to a fixed value */
-    background-color: #ffffff;
-    color: black;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    line-height: 40px; /* Center the text vertically */
-    margin: 4px 2px;
-    transition-duration: 0.4s;
-    cursor: pointer;
-    border-radius: 32px;
-    padding: 8px;
+            width: 500px; /* Set the width to a fixed value */
+            height: 40px; /* Set the height to a fixed value */
+            background-color: black;
+            color: white;
+            border-bottom: solid white  2px;
+
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            line-height: 40px; /* Center the text vertically */
+            margin: 4px 2px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+            padding: 8px;
+        }
+        a.Contact-btn {
+            display: inline-block;
+            width: 500px; /* Set the width to a fixed value */
+            height: 40px; /* Set the height to a fixed value */
+            background-color: #ff8113;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            line-height: 40px; /* Center the text vertically */
+            margin: 4px 2px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+            border-radius: 32px;
+            padding: 8px;
         }
         img {
+            position: relative;
             max-width: 92px;
             border-radius: 10px;
-            margin-top: 48px;
+            margin: -24px;
             margin-bottom: 20px;
             border-radius: 100%;
+            z-index: 100;
+            border: #ffffff solid 2px ;
         }
+        .banner-container {
+            position: relative;
+            background-size: cover;
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 350px;
+            overflow: hidden;
+            
+        }
+        .banner {
+    width: 0%;
+    display: hidden;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    object-fit: cover; /* Ensure the image covers the entire container */
+    object-position: top; /* Position the image at the top */
+    z-index: 0;
+}
 
+        .banner-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 350px;
+z-index: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+    .space{
+        margin: 20px;
+    }
+    .logo{
+        position: relative;
+    z-index: 100;
+    margin-top: -32px;    }
+        .button i {
+            color: white; /* Change the color of the icons to white */
+        }
+        .container-logo{
+            display: flex;
+    justify-content: center;
+        }
+        #verify {
+    color: #187fe6;
+    background-color: white;
+    margin-top: 0px;
+    font-size: 24px;
+    border-radius: 64px;
+    position: relative;
+    z-index: 1000;
+    top: 38px;
+    height: fit-content;
+}
+@media only screen and (max-width: 540px) {
+            body {
+                max-width: fit-content; /* Adjust logo size for smaller screens */
+                position:absolute;  
+
+            }
+        }
     </style>
 </head>
-<body>
-    <div class="container">
-        <img src="{{ url_for('static', filename=image_path) }}" alt="Project Image">
+<body style="background-color: {{ background_color }}">
+    <body style="background-color: {{ background_color }}">
+        <div class="banner-container" style="background-image: url({{ url_for('get_banner', filename=banner_path) }}) ;z-index: 0;">
+            {% if banner_path %}
+                <img class="banner" style="" src="{{ url_for('get_banner', filename=banner_path) }}" alt="Banner Image">
+                <div class="banner-overlay"></div>
+            {% endif %}
+        </div>
+        <div class="logo"><div class="container-logo"><img src="{{ url_for('get_uploaded_image', filename=image_path) }}" alt="Project Image"><i class="fa-solid fa-circle-check" id="verify"></i></div></div>
         <h1>{{ page_name }}</h1>
         <h2 class="Description">{{ project_description }}</h2>
-
+        <li><a class="Contact-btn" href="{{ url_for('static', filename=vcard_path) }}" download>Add to Contact</a></li>
+        <div class="space"></div>
         <ul>
-            {% for name, url in links %}
-                <li><a class="button" href="{{ url }}">{{ name }}</a></li>
+            {% for name, url, icon in links %}
+                <li><a class="button" href="{{ url }}"><i class="{{ icon }}"></i> {{ name }}</a></li>
             {% endfor %}
         </ul>
-        <h2>Generated by <a class="url" href="Reviewo.ma">Reviewo.ma</a> </h2>
-    </div>
+        <h2>Generated by <a class="url" href="SmartConnect.ma">SmartConnect.ma</a> </h2>
 </body>
 </html>
-    
